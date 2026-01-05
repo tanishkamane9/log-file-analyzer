@@ -10,7 +10,7 @@ def read_log_file(file_path):
 
 
 if __name__ == "__main__":
-    log_file_path = "logs/sample.log"
+    log_file_path = "logs/sample.log.example"
     log_lines = read_log_file(log_file_path)
 
     for line in log_lines:
