@@ -1,3 +1,4 @@
+import argparse
 from collections import Counter 
 
 def read_log_file(file_path):
@@ -47,14 +48,25 @@ def analyze_logs(log_lines):
 
     return level_counts, most_common_error , peak_error_hour
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description = "Log File Analyzer"
+    )
+    parser.add_argument(
+        "--file",
+        required=True,
+        help="path to log file"
+    )
+    return parser.parse_args()
 
 if __name__ == "__main__":
-    log_file_path = "logs/sample.log.example"
-    
+    args = parse_arguments()
+    log_file_path = args.file
+       
     lines = read_log_file(log_file_path)
     level_counts , common_error , peak_hour = analyze_logs(lines)
 
-    print("\nLOG LEVEL SUMMRY")
+    print("\nLOG LEVEL SUMMARY")
     print("--------------------")
     for level, count in level_counts.items():
         print(f"{level}: {count}")
